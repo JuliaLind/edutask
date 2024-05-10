@@ -120,7 +120,7 @@ describe('Todo', () => {
                 .should('have.css', 'text-decoration-line', 'line-through') // assert that the done todo is strike through
         })
 
-        it('R8UC3 - When the x symbol behind a task is clicked the task should be removed from the list', () => {
+        it('R8UC3 - When the x symbol behind a todo is clicked the todo should be removed from the list', () => {
             cy.intercept('DELETE', `**/todos/byid/*`).as('deleteTodo')
 
             const firstTodoDescr = "My first todo"
@@ -131,8 +131,7 @@ describe('Todo', () => {
             .click()
 
             cy.wait('@deleteTodo').then((interception) => {
-                // first one is not technically an assert, 
-                // but to make sure that the request to
+                // to make sure that the request to
                 // backend has resulted in a response
                 // before asserting if the item has been 
                 // removed from the view
